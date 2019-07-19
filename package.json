@@ -1,0 +1,23 @@
+{
+  "name": "team-lead-picker",
+  "version": "1.0.0",
+  "description": "Team Lead Picker for Team Mazus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tolulope-od/team-lead-picker.git"
+  },
+  "keywords": [
+    "random-picker",
+    "team"
+  ],
+  "author": "Tolulope for Team Mazus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tolulope-od/team-lead-picker/issues"
+  },
+  "homepage": "https://github.com/tolulope-od/team-lead-picker#readme"
+}
