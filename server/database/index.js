@@ -6,6 +6,7 @@ const { config } = dotenv;
 config();
 const debug = Debug('db');
 
+const { log } = console;
 export default class Table {
   constructor(table) {
     this.table = table;
@@ -76,8 +77,19 @@ export default class Table {
       debug(result.rows);
       return result.rows;
     } catch (err) {
-      debug(err);
-      return err;
+      return log(err);
+    }
+  }
+
+  async updateAllRows(params, rows) {
+    try {
+      const result = await this.pool.query(
+        `UPDATE ${this.table} SET ${params} RETURNING ${'*' || rows}`
+      );
+      debug(result.rows);
+      return result.rows;
+    } catch (err) {
+      return log(err);
     }
   }
 }

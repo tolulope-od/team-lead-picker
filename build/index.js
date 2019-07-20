@@ -35,7 +35,7 @@ app.get('/', function (req, res) {
 });
 app.use(function (err, req, res, next) {
   debug(err.stack);
-  res.status(500).json({
+  return res.status(500).json({
     status: 'error',
     message: 'Something broke. Please try again or check back for a fix'
   });

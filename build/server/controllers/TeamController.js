@@ -31,71 +31,43 @@ function () {
     value: function () {
       var _selectWeekLeaders = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(req, res, next) {
-        var weekCount, membersCount, allMembers, membersNotLed, membersNotQA, teamLead, index, teamQA, result;
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      regeneratorRuntime.mark(function _callee(req, res, next) {
+        var weekCount, membersCount, membersNotLed, membersNotQA, teamLead, index, teamQA, result;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context.prev = _context.next) {
               case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
+                _context.prev = 0;
+                _context.next = 3;
                 return _database.Weeks.selectCount(['"week"']);
 
               case 3:
-                weekCount = _context2.sent;
-                _context2.next = 6;
+                weekCount = _context.sent;
+                _context.next = 6;
                 return _database.Members.selectCount(['"id"']);
 
               case 6:
-                membersCount = _context2.sent;
+                membersCount = _context.sent;
 
                 if (!(parseInt(weekCount[0].count, 10) % parseInt(membersCount[0].count, 10) === 0)) {
-                  _context2.next = 12;
+                  _context.next = 10;
                   break;
                 }
 
-                _context2.next = 10;
-                return _database.Members.selectAll(['*']);
+                _context.next = 10;
+                return _database.Members.updateAllRows(["\"hasBeenTL\"=".concat(false, ", \"hasBeenQA\"=", false)]);
 
               case 10:
-                allMembers = _context2.sent;
-                allMembers.forEach(
-                /*#__PURE__*/
-                function () {
-                  var _ref = _asyncToGenerator(
-                  /*#__PURE__*/
-                  regeneratorRuntime.mark(function _callee(member) {
-                    return regeneratorRuntime.wrap(function _callee$(_context) {
-                      while (1) {
-                        switch (_context.prev = _context.next) {
-                          case 0:
-                            _context.next = 2;
-                            return _database.Members.update(["\"hasBeenTL\"=".concat(false, ", \"hasBeenQA\"=", false)], ["\"email\"='".concat(member.email, "'")]);
-
-                          case 2:
-                          case "end":
-                            return _context.stop();
-                        }
-                      }
-                    }, _callee);
-                  }));
-
-                  return function (_x4) {
-                    return _ref.apply(this, arguments);
-                  };
-                }());
-
-              case 12:
-                _context2.next = 14;
+                _context.next = 12;
                 return _database.Members.select(['*'], ["\"hasBeenTL\"=".concat(false)]);
 
-              case 14:
-                membersNotLed = _context2.sent;
-                _context2.next = 17;
+              case 12:
+                membersNotLed = _context.sent;
+                _context.next = 15;
                 return _database.Members.select(['*'], ["\"hasBeenQA\"=".concat(false)]);
 
-              case 17:
-                membersNotQA = _context2.sent;
+              case 15:
+                membersNotQA = _context.sent;
                 teamLead = (0, _index.generateRandomUser)(membersNotLed);
 
                 if (membersNotQA.some(function (member) {
@@ -108,35 +80,35 @@ function () {
                 }
 
                 teamQA = (0, _index.generateRandomUser)(membersNotQA);
-                _context2.next = 23;
+                _context.next = 21;
                 return _database.Members.update(["\"hasBeenTL\"=".concat(true)], ["\"email\"='".concat(teamLead.email, "'")]);
 
-              case 23:
-                _context2.next = 25;
+              case 21:
+                _context.next = 23;
                 return _database.Members.update(["\"hasBeenQA\"=".concat(true)], ["\"email\"='".concat(teamQA.email, "'")]);
 
-              case 25:
-                _context2.next = 27;
+              case 23:
+                _context.next = 25;
                 return _database.Weeks.create(['"tL"', '"qA"', '"teamLead"', '"qualityAssurance"'], ["".concat(teamLead.id, ", ").concat(teamQA.id, ", '").concat(teamLead.name, "', '").concat(teamQA.name, "'")]);
 
-              case 27:
-                result = _context2.sent;
-                return _context2.abrupt("return", res.status(200).json({
+              case 25:
+                result = _context.sent;
+                return _context.abrupt("return", res.status(200).json({
                   status: 'success',
                   data: result
                 }));
 
-              case 31:
-                _context2.prev = 31;
-                _context2.t0 = _context2["catch"](0);
-                return _context2.abrupt("return", next(_context2.t0));
+              case 29:
+                _context.prev = 29;
+                _context.t0 = _context["catch"](0);
+                return _context.abrupt("return", next(_context.t0));
 
-              case 34:
+              case 32:
               case "end":
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2, null, [[0, 31]]);
+        }, _callee, null, [[0, 29]]);
       }));
 
       function selectWeekLeaders(_x, _x2, _x3) {

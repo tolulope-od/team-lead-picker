@@ -26,6 +26,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var config = _dotenv["default"].config;
 config();
 var debug = (0, _debug["default"])('db');
+var _console = console,
+    log = _console.log;
 
 var Table =
 /*#__PURE__*/
@@ -223,10 +225,9 @@ function () {
               case 8:
                 _context5.prev = 8;
                 _context5.t0 = _context5["catch"](0);
-                debug(_context5.t0);
-                return _context5.abrupt("return", _context5.t0);
+                return _context5.abrupt("return", log(_context5.t0));
 
-              case 12:
+              case 11:
               case "end":
                 return _context5.stop();
             }
@@ -239,6 +240,45 @@ function () {
       }
 
       return update;
+    }()
+  }, {
+    key: "updateAllRows",
+    value: function () {
+      var _updateAllRows = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee6(params, rows) {
+        var result;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+                _context6.next = 3;
+                return this.pool.query("UPDATE ".concat(this.table, " SET ").concat(params, " RETURNING ").concat('*' || rows));
+
+              case 3:
+                result = _context6.sent;
+                debug(result.rows);
+                return _context6.abrupt("return", result.rows);
+
+              case 8:
+                _context6.prev = 8;
+                _context6.t0 = _context6["catch"](0);
+                return _context6.abrupt("return", log(_context6.t0));
+
+              case 11:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this, [[0, 8]]);
+      }));
+
+      function updateAllRows(_x11, _x12) {
+        return _updateAllRows.apply(this, arguments);
+      }
+
+      return updateAllRows;
     }()
   }], [{
     key: "initConn",
