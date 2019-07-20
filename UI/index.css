@@ -1,0 +1,93 @@
+@import url(https://fonts.googleapis.com/css?family=Varela);
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #ffffff;
+}
+nav {
+  display: flex; 
+  justify-content: space-around;
+}
+
+nav .mazus {
+  background-color: #071013;
+  height: 2rem;
+  flex: 1;
+  text-align: center;
+  height: 3rem;
+  font-size: 3rem;
+  color: white;
+  padding: 1rem;
+}
+table {
+  text-align: center;
+}
+table th {
+    background-color: #071013;
+    width: 33.3vw;
+    height: 3rem;
+    color: #ffffff;
+}
+table tr{
+  height: 3rem;
+  font-size: 1.4rem;
+  text-transform: uppercase
+}
+table td {
+  font-size: 1.4rem;
+}
+table tr:nth-child(even) {
+  background-color: rgb(235, 235, 235);
+}
+table tr:hover {
+  background-color: rgb(220, 215, 215);
+}
+#showData {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+#tl_qa {
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+       box-shadow: 0 10px 6px -6px #777;
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+#tl_qa #hd {
+  line-height: 0.3em;
+  font-size: 20px;
+  color: #EB5160;
+  font-weight: bold;
+}
+
+#tl, #qa {
+  font-size: 40px;
+  font-weight: lighter;
+}
+#tl_qa div:nth-child(1)  {
+  border-right: 1px solid black;
+}
+#tl_qa div {
+  flex: 1;
+  text-align: center;
+  }
+#week {
+  background-color: #EB5160;
+  color: #ffffff;
+  padding: 1rem;
+  border-radius: 4px;
+  width: 200px; 
+  text-align: center;
+}
+#wk {
+  text-align: center;
+  display: flex;
+justify-content: space-around;
+}
+
