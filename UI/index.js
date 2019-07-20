@@ -3,7 +3,6 @@ async function CreateTableFromJSON() {
  const { data } = await res.json();
  
    var myBooks = await data.map((obj) => {
-     console.log(obj);
    return {
      'WEEK': `WEEK ${obj.week}`,
      'TEAM LEAD': obj.teamLead,
@@ -61,8 +60,23 @@ async function CreateTableFromJSON() {
   divContainer.appendChild(table);
 }
 
+function createNewLeaders() {
+  const leader = fetch('https://team-lead-picker.herokuapp.com/api/v1/team/leaders',{ 
+    method: 'POST'
+  });
   CreateTableFromJSON()
 
+}
+  CreateTableFromJSON()
+
+
+  const date = new Date();
+  const day = date.getDay();
+  const hour = date.getHours()
+console.log(day, hour)
+  if (day === 5 && hour > 12) {
+    createNewLeaders();
+  }
 
 
 
